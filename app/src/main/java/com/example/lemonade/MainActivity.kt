@@ -35,6 +35,8 @@ import com.example.lemonade.ui.theme.LemonadeTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.painterResource
@@ -50,9 +52,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LemonadeTheme {
-                setContent {
                     LemonadeApp()
-                }
             }
         }
     }
@@ -70,7 +70,7 @@ fun LemonadeApp() {
         ) {
             Text(
                 text = "Lemonade",
-                fontSize = 30.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(10.dp)
                 )
@@ -118,31 +118,23 @@ fun MakeLemonade() {
                     4 -> curStep = 1
                 }
             },
-            shape = RoundedCornerShape(40.dp),
+            shape = RoundedCornerShape(24.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(195, 236, 210)
             ),
-            modifier = Modifier
-                .border(
-                    width = 2.dp,
-                    color = Color(105, 205, 216),
-                    shape = RoundedCornerShape(40.dp)
-                )
+            modifier = Modifier.size(200.dp)
         ) {
-            Column () {
-                Box() {
-                    Image(
-                        painter = painterResource(imgSrc),
-                        contentDescription = "Lemonade"
-                    )
-                }
-                Spacer(modifier = Modifier.height(16.dp))
-                Text(
-                    text = stringResource(txtSrc)
-                )
-            }
+            Image(
+                painter = painterResource(imgSrc),
+                contentDescription = "Lemonade"
+            )
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = stringResource(txtSrc),
+        )
     }
+
 }
 
 @Preview(showBackground = true)
